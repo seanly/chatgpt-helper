@@ -1,0 +1,8 @@
+image:
+  file: .devcontainer/Dockerfile
+  context: .devcontainer
+ports:
+  - name: ChatGPT Next Web
+    description: ChatGPT Next Web
+    port: 3000
+    onOpen: notify

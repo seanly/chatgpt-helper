@@ -1,0 +1,29 @@
+{
+	"name": "ChatGPT",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an image version: latest
+		"args": { 
+					"VARIANT"  : "latest"
+					//"USERNAME" : "${env:USER}",
+					//"USER_UID" : "${env:UID}",
+					//"USER_GID" : "${env:UID}"
+				}
+	},
+
+	
+	"customizations": {
+		"vscode" : {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {},
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+	"updateRemoteUserUID": false,
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [ 3000 ]
+}
