@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ux
+set -u
 function start_service() {
 	local executable="$1" && shift
 	local executable_name="${executable##*/}"
