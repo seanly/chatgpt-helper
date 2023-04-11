@@ -1,0 +1,28 @@
+#!/bin/bash
+set -ux
+function start_service() {
+	local executable="$1" && shift
+	local executable_name="${executable##*/}"
+	local args=("$@")
+	start-stop-daemon --make-pidfile --pidfile "/tmp/${executable_name}.pid" --remove-pidfile \
+		--quiet --background --start \
+		--startas "$BASH" -- -c "exec $executable ${args[*]} > /tmp/${executable_name}.log 2>&1"
+}
+function log::info() {
+	printf 'info[%s]: %s\n' "${0##*/}" "$@"
+}
+
+function start_chatgpt() {
+	log::info "Starting chatgpt server on port 3000"
+	start_service "$(command -v node)" "$HOME/.chatgpt/server.js"
+}
+
+if test ! -e /tmp/node.pid; then
+	start_chatgpt
+else 
+	pidExist=$(ps aux | awk '{print $2}' | grep -w $(cat /tmp/node.pid))
+	if [ "$pidExist" == "" ]; then
+		start_chatgpt
+	fi
+fi
+
