@@ -6,3 +6,6 @@ ports:
     description: ChatGPT Next Web
     port: 3000
     onOpen: notify
+
+tasks:
+  - command: docker-compose up -d
