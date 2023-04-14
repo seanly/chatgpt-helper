@@ -1,0 +1,9 @@
+version: "3"
+services:
+  yakgpt:
+    build:
+      context: ./
+    image: yakgpt/yakgpt:latest
+    restart: always
+    ports:
+      - 3001:3000
