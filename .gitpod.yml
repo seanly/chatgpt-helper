@@ -1,10 +1,12 @@
-image:
-  file: .devcontainer/Dockerfile
-  context: .devcontainer
 ports:
   - name: ChatGPT Next Web
     description: ChatGPT Next Web
     port: 3000
+    onOpen: notify
+
+  - name: YakGPT
+    description: ChatGPT Web
+    port: 3001
     onOpen: notify
 
 tasks:
